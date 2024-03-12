@@ -27,13 +27,15 @@ namespace J_JQueuingSystem.Screens
             InitializeComponent();
             //Titles will be keys
             //Keywords will be values
-            filterDictionary.Add("School","school_name");
-            filterDictionary.Add("Event type","event_type");
+            filterDictionary.Add("PC Number","pc_number");
         }
 
 
         private void Settings_Load(object sender, EventArgs e)
         {
+            database.fillUsersTable(ref dgvUsers);
+            cbFilterBatch.Items.Clear();
+            cbFilterBatch.Items.AddRange(filterDictionary.Keys.ToArray());
         }
 
 
@@ -43,17 +45,17 @@ namespace J_JQueuingSystem.Screens
         private void cbFilterBatch_SelectedIndexChanged(object sender, EventArgs e)
         {
             cbKeyword.Items.Clear();
-            cbKeyword.Items.AddRange(database.getFilters(filterDictionary[cbFilterBatch.Text]).ToArray());
+            cbKeyword.Items.AddRange(database.getAccountFilters(filterDictionary[cbFilterBatch.Text]).ToArray());
         }
 
         private void cbKeyword_SelectedIndexChanged(object sender, EventArgs e)
         {
-            database.filterBatch(ref dgvBatchList, filterDictionary[cbFilterBatch.Text], cbKeyword.Text);
+            database.filterUsersTable(ref dgvUsers, filterDictionary[cbFilterBatch.Text], cbKeyword.Text);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            new AddBatch(ref dgvBatchList).ShowDialog();
+            new AddAccount(ref dgvUsers).ShowDialog();
         }
     }
 }

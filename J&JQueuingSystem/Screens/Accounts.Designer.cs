@@ -29,18 +29,19 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Accounts));
             this.label1 = new System.Windows.Forms.Label();
             this.refreshTimer = new System.Windows.Forms.Timer(this.components);
             this.gbUsers = new System.Windows.Forms.GroupBox();
-            this.btnAdd = new J_JQueuingSystem.RoundedButton();
             this.label4 = new System.Windows.Forms.Label();
             this.cbKeyword = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cbFilterBatch = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.dgvBatchList = new System.Windows.Forms.DataGridView();
+            this.dgvUsers = new System.Windows.Forms.DataGridView();
+            this.btnAdd = new J_JQueuingSystem.RoundedButton();
             this.gbUsers.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBatchList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -62,7 +63,7 @@
             this.gbUsers.Controls.Add(this.label3);
             this.gbUsers.Controls.Add(this.cbFilterBatch);
             this.gbUsers.Controls.Add(this.label2);
-            this.gbUsers.Controls.Add(this.dgvBatchList);
+            this.gbUsers.Controls.Add(this.dgvUsers);
             this.gbUsers.Location = new System.Drawing.Point(18, 45);
             this.gbUsers.Margin = new System.Windows.Forms.Padding(2);
             this.gbUsers.Name = "gbUsers";
@@ -71,26 +72,6 @@
             this.gbUsers.TabIndex = 15;
             this.gbUsers.TabStop = false;
             this.gbUsers.Text = "Users";
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.BackColor = System.Drawing.Color.Transparent;
-            this.btnAdd.BorderColor = System.Drawing.Color.ForestGreen;
-            this.btnAdd.BorderRadius = 35;
-            this.btnAdd.BorderSize = 2;
-            this.btnAdd.FlatAppearance.BorderSize = 0;
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd.ForeColor = System.Drawing.Color.Black;
-            this.btnAdd.Image = global::J_JQueuingSystem.Properties.Resources.customer;
-            this.btnAdd.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnAdd.Location = new System.Drawing.Point(659, 443);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(165, 50);
-            this.btnAdd.TabIndex = 20;
-            this.btnAdd.Text = "Add New";
-            this.btnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // label4
             // 
@@ -146,23 +127,43 @@
             this.label2.TabIndex = 15;
             this.label2.Text = "Filter by:";
             // 
-            // dgvBatchList
+            // dgvUsers
             // 
-            this.dgvBatchList.AllowUserToAddRows = false;
-            this.dgvBatchList.AllowUserToDeleteRows = false;
-            this.dgvBatchList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dgvUsers.AllowUserToAddRows = false;
+            this.dgvUsers.AllowUserToDeleteRows = false;
+            this.dgvUsers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvBatchList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvBatchList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBatchList.Location = new System.Drawing.Point(21, 83);
-            this.dgvBatchList.Margin = new System.Windows.Forms.Padding(2);
-            this.dgvBatchList.MultiSelect = false;
-            this.dgvBatchList.Name = "dgvBatchList";
-            this.dgvBatchList.ReadOnly = true;
-            this.dgvBatchList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvBatchList.Size = new System.Drawing.Size(803, 355);
-            this.dgvBatchList.TabIndex = 0;
+            this.dgvUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvUsers.Location = new System.Drawing.Point(21, 83);
+            this.dgvUsers.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvUsers.MultiSelect = false;
+            this.dgvUsers.Name = "dgvUsers";
+            this.dgvUsers.ReadOnly = true;
+            this.dgvUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvUsers.Size = new System.Drawing.Size(803, 355);
+            this.dgvUsers.TabIndex = 0;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.Transparent;
+            this.btnAdd.BorderColor = System.Drawing.Color.ForestGreen;
+            this.btnAdd.BorderRadius = 35;
+            this.btnAdd.BorderSize = 2;
+            this.btnAdd.FlatAppearance.BorderSize = 0;
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.ForeColor = System.Drawing.Color.Black;
+            this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
+            this.btnAdd.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnAdd.Location = new System.Drawing.Point(659, 443);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(165, 50);
+            this.btnAdd.TabIndex = 20;
+            this.btnAdd.Text = "Add New";
+            this.btnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // Accounts
             // 
@@ -180,7 +181,7 @@
             this.Load += new System.EventHandler(this.Settings_Load);
             this.gbUsers.ResumeLayout(false);
             this.gbUsers.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBatchList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -191,7 +192,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Timer refreshTimer;
         private System.Windows.Forms.GroupBox gbUsers;
-        private System.Windows.Forms.DataGridView dgvBatchList;
+        private System.Windows.Forms.DataGridView dgvUsers;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cbFilterBatch;
         private System.Windows.Forms.Label label3;

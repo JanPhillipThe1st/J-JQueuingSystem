@@ -54,5 +54,15 @@ namespace J_JQueuingSystem.Screens
             panelMain.Controls.Add(panelForm);
             panelForm.Show();
         }
+
+        private void accountsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Accounts panelForm = new Accounts();
+            panelForm.Dock = DockStyle.Fill;
+            panelForm.TopLevel = false;
+            panelMain.Controls.Clear();
+            panelMain.Controls.Add(panelForm);
+            panelForm.Show();
+        }
     }
 }

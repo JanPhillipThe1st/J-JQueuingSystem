@@ -121,6 +121,41 @@ namespace J_JQueuingSystem
                 this.db.Close();
             }
         }
+        public void fillUsersTable(ref DataGridView dgvTable)
+        {
+            using (MySqlCommand command = new MySqlCommand())
+            {
+                checkConnection();
+                command.Connection = this.db;
+                command.CommandText = "SELECT `user_ID`, `username` AS 'Username', `password` AS 'Password', `name` AS 'Name', `pc_number` AS 'PC Number' FROM `user`;";
+                MySqlDataReader reader = command.ExecuteReader();
+                DataTable dataTable = new DataTable();
+                dataTable.Load(reader);
+                dgvTable.DataSource = dataTable;
+
+                command.Dispose();
+                this.db.Close();
+            }
+        }
+
+        public void filterUsersTable(ref DataGridView dgvTable,String filter,String keyword)
+        {
+            using (MySqlCommand command = new MySqlCommand())
+            {
+                checkConnection();
+                command.Connection = this.db;
+                command.CommandText = "SELECT `user_ID`, `username` AS 'Username', `password` AS 'Password', `name` AS 'Name', `pc_number` AS 'PC Number' FROM `user`" +
+                    " WHERE `"+filter+"` = @keyword;";
+                command.Parameters.AddWithValue("@keyword",keyword);
+                MySqlDataReader reader = command.ExecuteReader();
+                DataTable dataTable = new DataTable();
+                dataTable.Load(reader);
+                dgvTable.DataSource = dataTable;
+
+                command.Dispose();
+                this.db.Close();
+            }
+        }
 
         public void fillQueueTable(ref DataGridView dgvTable)
         {
@@ -260,6 +295,26 @@ namespace J_JQueuingSystem
             }
             return results;
         }
+
+        public List<String> getAccountFilters(String filterColumn)
+        {
+            List<String> results = new List<String>();
+            using (MySqlCommand command = new MySqlCommand())
+            {
+                this.db.Open();
+                command.Connection = this.db;
+                command.CommandText = "SELECT DISTINCT `" + filterColumn + "` FROM `user`; ";
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    results.Add((reader.GetInt32(0).ToString()));
+                }
+
+                command.Dispose();
+                this.db.Close();
+            }
+            return results;
+        }
         public List<String> filterBatch (ref DataGridView dgvTable, String filterColumn,String criteria)
         {
             List<String> results = new List<String>();
@@ -363,6 +418,37 @@ namespace J_JQueuingSystem
                     {
 
                     MessageBox.Show("Batch number already exists! Please try again.", "Saving data failed.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                command.Dispose();
+                this.db.Close();
+            }
+        }
+
+        public void addUser(User user)
+        {
+            int lastCustomer = 0;
+            using (MySqlCommand command = new MySqlCommand())
+            {
+                this.db.Open();
+                command.Connection = this.db;
+                command.CommandText = "INSERT INTO `user`( `username`, `password`, `name`, `pc_number`, `access`)" +
+                    " VALUES( @username, @password, @name, @pc_number, 'user')";
+                command.Parameters.AddWithValue("@username", user.username);
+                command.Parameters.AddWithValue("@password", user.password);
+                command.Parameters.AddWithValue("@name", user.name);
+                command.Parameters.AddWithValue("@pc_number", user.pc_number);
+                try
+                {
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("User added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (MySqlException ex)
+                {
+                    if (ex.Message.Contains("Duplicate"))
+                    {
+
+                        MessageBox.Show("Batch number already exists! Please try again.", "Saving data failed.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 command.Dispose();
