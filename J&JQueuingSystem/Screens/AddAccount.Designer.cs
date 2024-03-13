@@ -36,13 +36,13 @@
             this.tbConfirmPassword = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cbPCNumber = new System.Windows.Forms.ComboBox();
+            this.btnAdd = new J_JQueuingSystem.RoundedButton();
             this.tbUsername = new System.Windows.Forms.TextBox();
             this.tbPassword = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.btnAdd = new J_JQueuingSystem.RoundedButton();
             this.gbBatch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -67,7 +67,7 @@
             this.gbBatch.Location = new System.Drawing.Point(12, 12);
             this.gbBatch.Name = "gbBatch";
             this.gbBatch.Size = new System.Drawing.Size(442, 415);
-            this.gbBatch.TabIndex = 1;
+            this.gbBatch.TabIndex = 0;
             this.gbBatch.TabStop = false;
             this.gbBatch.Text = "Fill up user information";
             // 
@@ -76,7 +76,7 @@
             this.tbName.Location = new System.Drawing.Point(35, 329);
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(372, 27);
-            this.tbName.TabIndex = 15;
+            this.tbName.TabIndex = 4;
             // 
             // label5
             // 
@@ -84,7 +84,7 @@
             this.label5.Location = new System.Drawing.Point(27, 301);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(93, 22);
-            this.label5.TabIndex = 14;
+            this.label5.TabIndex = 10;
             this.label5.Text = "Full name:";
             // 
             // tbConfirmPassword
@@ -93,7 +93,7 @@
             this.tbConfirmPassword.Name = "tbConfirmPassword";
             this.tbConfirmPassword.PasswordChar = '•';
             this.tbConfirmPassword.Size = new System.Drawing.Size(372, 27);
-            this.tbConfirmPassword.TabIndex = 12;
+            this.tbConfirmPassword.TabIndex = 3;
             // 
             // label1
             // 
@@ -101,7 +101,7 @@
             this.label1.Location = new System.Drawing.Point(27, 238);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(160, 22);
-            this.label1.TabIndex = 13;
+            this.label1.TabIndex = 9;
             this.label1.Text = "Confirm Password:";
             // 
             // cbPCNumber
@@ -115,53 +115,7 @@
             this.cbPCNumber.Location = new System.Drawing.Point(35, 74);
             this.cbPCNumber.Name = "cbPCNumber";
             this.cbPCNumber.Size = new System.Drawing.Size(371, 30);
-            this.cbPCNumber.TabIndex = 11;
-            // 
-            // tbUsername
-            // 
-            this.tbUsername.Location = new System.Drawing.Point(35, 140);
-            this.tbUsername.Name = "tbUsername";
-            this.tbUsername.Size = new System.Drawing.Size(372, 27);
-            this.tbUsername.TabIndex = 3;
-            // 
-            // tbPassword
-            // 
-            this.tbPassword.Location = new System.Drawing.Point(35, 203);
-            this.tbPassword.Name = "tbPassword";
-            this.tbPassword.PasswordChar = '•';
-            this.tbPassword.Size = new System.Drawing.Size(372, 27);
-            this.tbPassword.TabIndex = 1;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(27, 112);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(97, 22);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Username:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(27, 49);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(106, 22);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "PC number:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(27, 175);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(90, 22);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Password:";
-            // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
+            this.cbPCNumber.TabIndex = 0;
             // 
             // btnAdd
             // 
@@ -180,11 +134,57 @@
             this.btnAdd.Location = new System.Drawing.Point(255, 363);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(147, 46);
-            this.btnAdd.TabIndex = 8;
+            this.btnAdd.TabIndex = 5;
             this.btnAdd.Text = "Save";
             this.btnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // tbUsername
+            // 
+            this.tbUsername.Location = new System.Drawing.Point(35, 140);
+            this.tbUsername.Name = "tbUsername";
+            this.tbUsername.Size = new System.Drawing.Size(372, 27);
+            this.tbUsername.TabIndex = 1;
+            // 
+            // tbPassword
+            // 
+            this.tbPassword.Location = new System.Drawing.Point(35, 203);
+            this.tbPassword.Name = "tbPassword";
+            this.tbPassword.PasswordChar = '•';
+            this.tbPassword.Size = new System.Drawing.Size(372, 27);
+            this.tbPassword.TabIndex = 2;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(27, 112);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(97, 22);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Username:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(27, 49);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(106, 22);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "PC number:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(27, 175);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(90, 22);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Password:";
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // AddAccount
             // 

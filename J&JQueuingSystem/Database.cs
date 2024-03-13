@@ -12,6 +12,7 @@ using J_JQueuingSystem.Models;
 using Google.Apis.Forms.v1.Data;
 using Mysqlx.Crud;
 using System.Collections;
+using J_JQueuingSystem.Screens;
 
 namespace J_JQueuingSystem
 {
@@ -54,9 +55,9 @@ namespace J_JQueuingSystem
             bool result = false;
             using (MySqlCommand command = new MySqlCommand())
             {
-                this.db.Open();
+                checkConnection();
                 command.Connection = this.db;
-                command.CommandText = "SELECT username, password,name FROM user WHERE username = @username OR password = @password AND access = 'admin'";
+                command.CommandText = "SELECT username, password,name FROM user WHERE username = @username AND password = @password AND access = 'admin'";
                 command.Parameters.AddWithValue("@username", username);
                 command.Parameters.AddWithValue("@password", password);
                 MySqlDataReader reader = command.ExecuteReader();
@@ -93,7 +94,6 @@ namespace J_JQueuingSystem
                 }
                 else
                 {
-                    MessageBox.Show("User does not exist");
                     result = false;
 
                 }
@@ -101,6 +101,69 @@ namespace J_JQueuingSystem
                 command.Dispose();
                 this.db.Close();
                 return result;
+            }
+        }
+
+        public void  userLogin(String username, String password)
+        {
+            using (MySqlCommand command = new MySqlCommand())
+            {
+                checkConnection();
+                command.Connection = this.db;
+                command.CommandText = "SELECT username, password,name,pc_number  FROM user WHERE username = @username AND password = @password AND access = 'user'";
+                command.Parameters.AddWithValue("@username", username);
+                command.Parameters.AddWithValue("@password", password);
+                MySqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    try
+                    {
+                        if (reader.GetString(0) == username && reader.GetString(1) == password)
+                        {
+                            MessageBox.Show("Login Successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            switch (reader.GetInt32("pc_number"))
+                            {
+                                case 1:
+                                    new FillUpForm().ShowDialog();
+                                    break;
+                                case 2:
+                                    new MakeUp().ShowDialog();
+                                    break;
+                                case 3:
+                                    new Dressing().ShowDialog();
+                                    break;
+                            }
+                            return;
+                        }
+                        else if (reader.GetString(0) == username && reader.GetString(1) != password)
+                        {
+                            MessageBox.Show("You entered the wrong password", "Login Failed");
+                       
+                        }
+                        else
+                        {
+                            MessageBox.Show("Invalid username and password.", "Login Failed");
+                     
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+;
+                    }
+
+
+                }
+                else
+                {
+                    MessageBox.Show("User does not exist");
+                
+
+                }
+
+                command.Dispose();
+                this.db.Close();
             }
         }
         public void fillQueueTable(ref DataGridView dgvTable,String batchNumber) {

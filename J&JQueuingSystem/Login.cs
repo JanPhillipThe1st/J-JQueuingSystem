@@ -36,6 +36,10 @@ namespace J_JQueuingSystem
                 new Admin().ShowDialog();
                 //new FillUpForm().Show();
             }
+            else {
+                database.userLogin(tbUsername.Text, tbPassword.Text);
+                return;
+            }
             
         }
 

@@ -92,5 +92,13 @@ namespace J_JQueuingSystem.Screens
             tbName.Text = user.name;
             tbConfirmPassword.Text = user.password;
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to delete this user?","Delete user",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                
+            }
+        }
     }
 }
