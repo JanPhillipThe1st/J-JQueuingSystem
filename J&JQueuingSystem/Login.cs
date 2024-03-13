@@ -35,9 +35,11 @@ namespace J_JQueuingSystem
                 MessageBox.Show("Login Successful!\nLogged in as Admin!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 new Admin().ShowDialog();
                 //new FillUpForm().Show();
+                this.Hide();
             }
             else {
                 database.userLogin(tbUsername.Text, tbPassword.Text);
+                this.Hide();
                 return;
             }
             

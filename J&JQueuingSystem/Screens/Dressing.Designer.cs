@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dressing));
             this.gbQueue = new System.Windows.Forms.GroupBox();
             this.lblAutoRefresh = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -40,6 +41,17 @@
             this.dgvQueue = new System.Windows.Forms.DataGridView();
             this.refreshTimer = new System.Windows.Forms.Timer(this.components);
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.lblCurrentCustomer = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lblSection = new System.Windows.Forms.Label();
+            this.lblContactNumber = new System.Windows.Forms.Label();
+            this.lblCourse = new System.Windows.Forms.Label();
+            this.lblFBAccount = new System.Windows.Forms.Label();
+            this.btnNext = new J_JQueuingSystem.RoundedButton();
             this.tbAutoRefreshToggle = new J_JQueuingSystem.ToggleButton();
             this.gbQueue.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbRefreshRate)).BeginInit();
@@ -60,7 +72,7 @@
             this.gbQueue.Controls.Add(this.dgvQueue);
             this.gbQueue.Location = new System.Drawing.Point(12, 12);
             this.gbQueue.Name = "gbQueue";
-            this.gbQueue.Size = new System.Drawing.Size(550, 451);
+            this.gbQueue.Size = new System.Drawing.Size(550, 592);
             this.gbQueue.TabIndex = 1;
             this.gbQueue.TabStop = false;
             this.gbQueue.Text = "Queue";
@@ -147,7 +159,7 @@
             this.dgvQueue.Name = "dgvQueue";
             this.dgvQueue.ReadOnly = true;
             this.dgvQueue.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvQueue.Size = new System.Drawing.Size(508, 283);
+            this.dgvQueue.Size = new System.Drawing.Size(508, 424);
             this.dgvQueue.TabIndex = 0;
             // 
             // refreshTimer
@@ -157,6 +169,131 @@
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
+            // 
+            // lblCurrentCustomer
+            // 
+            this.lblCurrentCustomer.AutoSize = true;
+            this.lblCurrentCustomer.Font = new System.Drawing.Font("Poppins SemiBold", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentCustomer.Location = new System.Drawing.Point(580, 93);
+            this.lblCurrentCustomer.Name = "lblCurrentCustomer";
+            this.lblCurrentCustomer.Size = new System.Drawing.Size(500, 62);
+            this.lblCurrentCustomer.TabIndex = 3;
+            this.lblCurrentCustomer.Text = "<<CUSTOMER NAME HERE>>";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Poppins SemiBold", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(580, 15);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(283, 62);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "NOW SERVING:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Poppins Medium", 16F, System.Drawing.FontStyle.Bold);
+            this.label2.Location = new System.Drawing.Point(634, 289);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(123, 39);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "SECTION:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Poppins Medium", 16F, System.Drawing.FontStyle.Bold);
+            this.label3.Location = new System.Drawing.Point(640, 333);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(117, 39);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "COURSE:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Poppins Medium", 16F, System.Drawing.FontStyle.Bold);
+            this.label4.Location = new System.Drawing.Point(594, 201);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(163, 39);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "CONTACT #:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Poppins Medium", 16F, System.Drawing.FontStyle.Bold);
+            this.label5.Location = new System.Drawing.Point(584, 245);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(173, 39);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "FB ACCOUNT:";
+            // 
+            // lblSection
+            // 
+            this.lblSection.AutoSize = true;
+            this.lblSection.Font = new System.Drawing.Font("Poppins Medium", 16F, System.Drawing.FontStyle.Bold);
+            this.lblSection.Location = new System.Drawing.Point(763, 289);
+            this.lblSection.Name = "lblSection";
+            this.lblSection.Size = new System.Drawing.Size(53, 39);
+            this.lblSection.TabIndex = 5;
+            this.lblSection.Text = "***";
+            // 
+            // lblContactNumber
+            // 
+            this.lblContactNumber.AutoSize = true;
+            this.lblContactNumber.Font = new System.Drawing.Font("Poppins Medium", 16F, System.Drawing.FontStyle.Bold);
+            this.lblContactNumber.Location = new System.Drawing.Point(763, 201);
+            this.lblContactNumber.Name = "lblContactNumber";
+            this.lblContactNumber.Size = new System.Drawing.Size(53, 39);
+            this.lblContactNumber.TabIndex = 5;
+            this.lblContactNumber.Text = "***";
+            // 
+            // lblCourse
+            // 
+            this.lblCourse.AutoSize = true;
+            this.lblCourse.Font = new System.Drawing.Font("Poppins Medium", 16F, System.Drawing.FontStyle.Bold);
+            this.lblCourse.Location = new System.Drawing.Point(763, 333);
+            this.lblCourse.Name = "lblCourse";
+            this.lblCourse.Size = new System.Drawing.Size(53, 39);
+            this.lblCourse.TabIndex = 6;
+            this.lblCourse.Text = "***";
+            // 
+            // lblFBAccount
+            // 
+            this.lblFBAccount.AutoSize = true;
+            this.lblFBAccount.Font = new System.Drawing.Font("Poppins Medium", 16F, System.Drawing.FontStyle.Bold);
+            this.lblFBAccount.Location = new System.Drawing.Point(763, 245);
+            this.lblFBAccount.Name = "lblFBAccount";
+            this.lblFBAccount.Size = new System.Drawing.Size(53, 39);
+            this.lblFBAccount.TabIndex = 6;
+            this.lblFBAccount.Text = "***";
+            // 
+            // btnNext
+            // 
+            this.btnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNext.BackColor = System.Drawing.Color.MintCream;
+            this.btnNext.BorderColor = System.Drawing.Color.DarkGreen;
+            this.btnNext.BorderRadius = 37;
+            this.btnNext.BorderSize = 2;
+            this.btnNext.FlatAppearance.BorderSize = 0;
+            this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNext.Font = new System.Drawing.Font("Poppins", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNext.ForeColor = System.Drawing.Color.Black;
+            this.errorProvider1.SetIconAlignment(this.btnNext, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
+            this.btnNext.Image = ((System.Drawing.Image)(resources.GetObject("btnNext.Image")));
+            this.btnNext.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnNext.Location = new System.Drawing.Point(1294, 561);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(206, 43);
+            this.btnNext.TabIndex = 7;
+            this.btnNext.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnNext.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnNext.UseVisualStyleBackColor = false;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // tbAutoRefreshToggle
             // 
@@ -173,18 +310,29 @@
             this.tbAutoRefreshToggle.UseVisualStyleBackColor = true;
             this.tbAutoRefreshToggle.CheckedChanged += new System.EventHandler(this.tbAutoRefreshToggle_CheckedChanged);
             // 
-            // MakeUp
+            // Dressing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1458, 512);
+            this.ClientSize = new System.Drawing.Size(1554, 708);
+            this.Controls.Add(this.btnNext);
+            this.Controls.Add(this.lblFBAccount);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lblCourse);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblContactNumber);
+            this.Controls.Add(this.lblSection);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblCurrentCustomer);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.gbQueue);
             this.Font = new System.Drawing.Font("Montserrat", 12F);
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.Name = "MakeUp";
+            this.Name = "Dressing";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Make up artist";
+            this.Text = "Dressing room";
             this.Load += new System.EventHandler(this.FillUpForm_Load);
             this.gbQueue.ResumeLayout(false);
             this.gbQueue.PerformLayout();
@@ -192,6 +340,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvQueue)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -208,5 +357,16 @@
         private ToggleButton tbAutoRefreshToggle;
         private System.Windows.Forms.Label lblAutoRefresh;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.Label lblCurrentCustomer;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblFBAccount;
+        private System.Windows.Forms.Label lblCourse;
+        private System.Windows.Forms.Label lblContactNumber;
+        private System.Windows.Forms.Label lblSection;
+        private RoundedButton btnNext;
     }
 }

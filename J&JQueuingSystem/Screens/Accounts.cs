@@ -64,6 +64,7 @@ namespace J_JQueuingSystem.Screens
         {
             currentUser = database.getUserByID(dgvUsers.SelectedCells[0].Value.ToString());
             new EditAccount(ref dgvUsers, currentUser).ShowDialog();
+            database.fillUsersTable(ref dgvUsers);
         }
     }
 }

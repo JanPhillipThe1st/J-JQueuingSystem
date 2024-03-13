@@ -162,6 +162,12 @@
     <Compile Include="RoundedTextBox.Designer.cs">
       <DependentUpon>RoundedTextBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Screens\Makeup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\Makeup.Designer.cs">
+      <DependentUpon>Makeup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Screens\EditAccount.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,12 +203,6 @@
     </Compile>
     <Compile Include="Screens\Dressing.Designer.cs">
       <DependentUpon>Dressing.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Screens\MakeUp.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Screens\MakeUp.Designer.cs">
-      <DependentUpon>MakeUp.cs</DependentUpon>
     </Compile>
     <Compile Include="Screens\Settings.cs">
       <SubType>Form</SubType>
@@ -244,6 +244,9 @@
     <EmbeddedResource Include="RoundedTextBox.resx">
       <DependentUpon>RoundedTextBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Screens\Makeup.resx">
+      <DependentUpon>Makeup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Screens\EditAccount.resx">
       <DependentUpon>EditAccount.cs</DependentUpon>
     </EmbeddedResource>
@@ -261,9 +264,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\Dressing.resx">
       <DependentUpon>Dressing.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Screens\MakeUp.resx">
-      <DependentUpon>MakeUp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
@@ -346,6 +346,7 @@
     <None Include="Resources\man %282%291.png" />
     <None Include="Resources\diversity.png" />
     <None Include="Resources\customer.png" />
+    <None Include="Resources\prev.png" />
     <Content Include="Scripts\chart.js" />
     <Content Include="Scripts\chart.min.js" />
   </ItemGroup>

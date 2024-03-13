@@ -113,7 +113,7 @@ namespace J_JQueuingSystem
         {
             if (this.Image == null)
                 return;
-            var pic = new Bitmap(this.Image, imageSize);
+            var pic = new Bitmap(this.Image,this.imageSize);
 
             this.Image = pic;
         }

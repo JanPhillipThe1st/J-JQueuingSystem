@@ -18,7 +18,7 @@ using J_JQueuingSystem.Models;
 
 namespace J_JQueuingSystem.Screens
 {
-    public partial class MakeUp : System.Windows.Forms.Form
+    public partial class Makeup : System.Windows.Forms.Form
     {
         Database database = new Database();
         //Set refresh range (in milliseconds)
@@ -27,7 +27,7 @@ namespace J_JQueuingSystem.Screens
         Queue queue = new Queue();
         Customer customer = new Customer();
         Boolean refreshing = true;
-        public MakeUp()
+        public Makeup()
         {
             InitializeComponent();
         }
@@ -39,6 +39,7 @@ namespace J_JQueuingSystem.Screens
             refreshTimer.Start();
             refreshing = tbAutoRefreshToggle.Checked;
 
+            refreshItem();
         }
 
        
@@ -58,10 +59,21 @@ namespace J_JQueuingSystem.Screens
             refreshTimer.Interval = refreshRate;
 
         }
+        void refreshItem() {
 
+            customer = database.getCurrentDressingCustomer();
+            lblCurrentCustomer.Text = customer.name;
+            lblContactNumber.Text = customer.contact;
+            lblFBAccount.Text = customer.account_name;
+            lblCourse.Text = customer.course;
+            lblSection.Text = customer.section;
+        }
         private void refreshTimer_Tick(object sender, EventArgs e)
         {
-
+            if (refreshing)
+            {
+                database.fillQueueTable(ref dgvQueue);
+            }
         }
 
         private void tbAutoRefreshToggle_CheckedChanged(object sender, EventArgs e)
@@ -79,6 +91,19 @@ namespace J_JQueuingSystem.Screens
 
         private void cbBatchNumber_SelectedIndexChanged(object sender, EventArgs e)
         {
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Mark as done and proceed to the next customer?","Next customer",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                //Now the waiting pool needs to be modified
+                //get this.
+                //When I click on the next button, I want the current customer's status to be 'dressing'
+                database.markAsDone(customer.ID.ToString());
+                //I also want to move them to a queue
+                refreshItem();
+            }
         }
     }
 }

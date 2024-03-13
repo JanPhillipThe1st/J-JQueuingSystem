@@ -97,7 +97,7 @@ namespace J_JQueuingSystem.Screens
         {
             if (MessageBox.Show("Are you sure you want to delete this user?","Delete user",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                
+                database.updateUser(user);
             }
         }
     }

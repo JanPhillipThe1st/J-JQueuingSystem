@@ -13,6 +13,9 @@ using Google.Apis.Forms.v1.Data;
 using Mysqlx.Crud;
 using System.Collections;
 using J_JQueuingSystem.Screens;
+using Org.BouncyCastle.Asn1.X509;
+using SkiaSharp;
+using System.Reflection;
 
 namespace J_JQueuingSystem
 {
@@ -128,10 +131,10 @@ namespace J_JQueuingSystem
                                     new FillUpForm().ShowDialog();
                                     break;
                                 case 2:
-                                    new MakeUp().ShowDialog();
+                                    new Dressing().ShowDialog();
                                     break;
                                 case 3:
-                                    new Dressing().ShowDialog();
+                                    new Makeup().ShowDialog();
                                     break;
                             }
                             return;
@@ -184,6 +187,7 @@ namespace J_JQueuingSystem
                 this.db.Close();
             }
         }
+   
         public void fillUsersTable(ref DataGridView dgvTable)
         {
             using (MySqlCommand command = new MySqlCommand())
@@ -237,6 +241,88 @@ namespace J_JQueuingSystem
                 command.Dispose();
                 this.db.Close();
             }
+        }
+        public Customer getCurrentCustomer()
+        {
+            Customer result = new Customer();
+            using (MySqlCommand command = new MySqlCommand())
+            {
+                checkConnection();
+                command.Connection = this.db;
+                command.CommandText = "SELECT DISTINCT* FROM `customer` INNER JOIN `queue` ON `customer`.`ID` = `queue`.`customer_ID`  WHERE `status`= 'waiting' ORDER BY `queue`.`batch_queue_number` ASC LIMIT 1 ;";
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    result.ID = reader.GetInt32(0);
+                    result.name = reader.GetString(1);
+                    result.contact = reader.GetString(2);
+                    result.account_name = reader.GetString(3);
+                    result.section = reader.GetString(4);
+                    result.course = reader.GetString(5);
+                    result.batch_queue_number = reader.GetInt32(8).ToString();
+                    result.batch_ID = reader.GetInt32(10).ToString();
+                }
+
+                command.Dispose();
+                this.db.Close();
+            }
+            return result;
+        }
+        public Customer getCurrentDressingCustomer()
+        {
+            Customer result = new Customer();
+            using (MySqlCommand command = new MySqlCommand())
+            {
+                checkConnection();
+                command.Connection = this.db;
+                command.CommandText = "SELECT DISTINCT* FROM `customer` INNER JOIN `queue` ON `customer`.`ID` = `queue`.`customer_ID`  WHERE `status`= 'dressing' ORDER BY `queue`.`batch_queue_number` ASC LIMIT 1 ;";
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    result.ID = reader.GetInt32(0);
+                    result.name = reader.GetString(1);
+                    result.contact = reader.GetString(2);
+                    result.account_name = reader.GetString(3);
+                    result.section = reader.GetString(4);
+                    result.course = reader.GetString(5);
+                    result.batch_queue_number = reader.GetInt32(8).ToString();
+                    result.batch_ID = reader.GetInt32(10).ToString();
+                }
+
+                command.Dispose();
+                this.db.Close();
+            }
+            return result;
+        }
+        public Customer assignCustomerToMakeUp(String id)
+        {
+            Customer result = new Customer();
+            using (MySqlCommand command = new MySqlCommand())
+            {
+                checkConnection();
+                command.Connection = this.db;
+                command.CommandText = "UPDATE `queue` SET `status` = 'dressing' WHERE `customer_ID` = @id";
+                command.Parameters.AddWithValue("@id",id);
+                command.ExecuteNonQuery();
+                command.Dispose();
+                this.db.Close();
+            }
+            return result;
+        }
+        public Customer markAsDone(String id)
+        {
+            Customer result = new Customer();
+            using (MySqlCommand command = new MySqlCommand())
+            {
+                checkConnection();
+                command.Connection = this.db;
+                command.CommandText = "UPDATE `queue` SET `status` = 'done' WHERE `customer_ID` = @id";
+                command.Parameters.AddWithValue("@id", id);
+                command.ExecuteNonQuery();
+                command.Dispose();
+                this.db.Close();
+            }
+            return result;
         }
         public Dictionary<String,int> getWeeklyCustomers()
         {
@@ -573,5 +659,26 @@ namespace J_JQueuingSystem
                     this.db.Close();
                 }
             }
+        public void deleteUser(User user)
+        {
+            using (MySqlCommand command = new MySqlCommand())
+            {
+                this.db.Open();
+                command.Connection = this.db;
+                command.CommandText = "DELETE FROM `user` WHERE `user_ID` = @user_ID;";
+                command.Parameters.AddWithValue("@user_ID", user.user_ID);
+                try
+                {
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("User information deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (MySqlException ex)
+                {
+                    
+                }
+                command.Dispose();
+                this.db.Close();
+            }
         }
+    }
 }

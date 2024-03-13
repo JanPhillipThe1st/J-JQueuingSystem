@@ -14,5 +14,7 @@ namespace J_JQueuingSystem.Models
         public String account_name { get; set; }
         public String section { get; set; }
         public String course { get; set; }
+        public String batch_queue_number { get; set; }
+        public String batch_ID { get; set; }
     }
 }
