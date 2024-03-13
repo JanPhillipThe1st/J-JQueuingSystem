@@ -127,7 +127,7 @@ namespace J_JQueuingSystem
             {
                 checkConnection();
                 command.Connection = this.db;
-                command.CommandText = "SELECT `user_ID`, `username` AS 'Username', `password` AS 'Password', `name` AS 'Name', `pc_number` AS 'PC Number' FROM `user`;";
+                command.CommandText = "SELECT `user_ID` AS '#', `username` AS 'Username', `password` AS 'Password', `name` AS 'Name', `pc_number` AS 'PC Number' FROM `user` WHERE `access` != 'admin';";
                 MySqlDataReader reader = command.ExecuteReader();
                 DataTable dataTable = new DataTable();
                 dataTable.Load(reader);
@@ -248,6 +248,30 @@ namespace J_JQueuingSystem
                 while (reader.Read())
                 {
                     result = reader.GetString(0);
+                }
+
+                command.Dispose();
+                this.db.Close();
+            }
+            return result;
+        }
+        public User getUserByID(String ID)
+        {
+            User result = new User ();
+            using (MySqlCommand command = new MySqlCommand())
+            {
+                this.db.Open();
+                command.Connection = this.db;
+                command.CommandText = "SELECT * FROM `user` WHERE `user_ID`= @ID; ";
+                command.Parameters.AddWithValue("@ID", ID);
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    result.user_ID = reader.GetInt32(0);
+                    result.username = reader.GetString(1);
+                    result.password = reader.GetString(2);
+                    result.name = reader.GetString(3);
+                    result.pc_number = reader.GetInt32(4);
                 }
 
                 command.Dispose();
@@ -448,12 +472,43 @@ namespace J_JQueuingSystem
                     if (ex.Message.Contains("Duplicate"))
                     {
 
-                        MessageBox.Show("Batch number already exists! Please try again.", "Saving data failed.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Username already exists! Please try again.", "Saving data failed.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 command.Dispose();
                 this.db.Close();
             }
+
         }
-    }
+            public void updateUser(User user)
+            {
+                using (MySqlCommand command = new MySqlCommand())
+                {
+                    this.db.Open();
+                    command.Connection = this.db;
+                    command.CommandText = "UPDATE `user` SET `username` = @username, `password` = @password, `name` =  @name," +
+                        " `pc_number` = @pc_number WHERE `user_ID` = @user_ID;";
+                    command.Parameters.AddWithValue("@username", user.username);
+                    command.Parameters.AddWithValue("@password", user.password);
+                    command.Parameters.AddWithValue("@name", user.name);
+                    command.Parameters.AddWithValue("@pc_number", user.pc_number);
+                    command.Parameters.AddWithValue("@user_ID", user.user_ID);
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("User information updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (MySqlException ex)
+                    {
+                        if (ex.Message.Contains("Duplicate"))
+                        {
+
+                            MessageBox.Show("username already exists! Please try again.", "Saving data failed.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    command.Dispose();
+                    this.db.Close();
+                }
+            }
+        }
 }

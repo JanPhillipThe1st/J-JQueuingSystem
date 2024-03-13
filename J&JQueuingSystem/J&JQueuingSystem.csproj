@@ -162,6 +162,12 @@
     <Compile Include="RoundedTextBox.Designer.cs">
       <DependentUpon>RoundedTextBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Screens\EditAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\EditAccount.Designer.cs">
+      <DependentUpon>EditAccount.cs</DependentUpon>
+    </Compile>
     <Compile Include="Screens\AddAccount.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -225,6 +231,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RoundedTextBox.resx">
       <DependentUpon>RoundedTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\EditAccount.resx">
+      <DependentUpon>EditAccount.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\AddAccount.resx">
       <DependentUpon>AddAccount.cs</DependentUpon>

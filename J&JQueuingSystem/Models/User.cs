@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace J_JQueuingSystem.Models
 {
-    internal class User
+    public class User
     {
         public int user_ID { get; set; }
         public String username { get; set; }

@@ -13,14 +13,16 @@ using static System.Collections.Specialized.BitVector32;
 
 namespace J_JQueuingSystem.Screens
 {
-    public partial class AddAccount : Form
+    public partial class EditAccount : Form
     {
         Database database = new Database();
         User user = new User();
         DataGridView dgv = new DataGridView();
-        public AddAccount(ref DataGridView dgv)
+        public EditAccount(ref DataGridView dgv,User user)
         {
             InitializeComponent();
+            this.dgv = dgv;
+            this.user = user;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -72,18 +74,23 @@ namespace J_JQueuingSystem.Screens
                 user.pc_number = Convert.ToInt32(cbPCNumber.Text);
                 user.name = tbName.Text;
                 user.username = tbUsername.Text;
-            if (MessageBox.Show("Are you sure you want to save this information?","Add new user",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Are you sure you want to save this information?","Update user",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
             {
 
-                database.addUser(user);
+                database.updateUser(user);
                 database.fillUsersTable(ref dgv);
+                this.Close();
             }
         }
 
 
         private void AddAccount_Load(object sender, EventArgs e)
         {
-
+            cbPCNumber.Text = user.pc_number.ToString();
+            tbUsername.Text = user.username;
+            tbPassword.Text = user.password;
+            tbName.Text = user.name;
+            tbConfirmPassword.Text = user.password;
         }
     }
 }

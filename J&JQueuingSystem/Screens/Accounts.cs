@@ -14,6 +14,8 @@ namespace J_JQueuingSystem.Screens
     public partial class Accounts : Form
     {
         Database database = new Database();
+
+        User currentUser=  new User();
         //Set refresh range (in milliseconds)
         int refreshRange = 4000;
         int refreshRate = 0;
@@ -56,6 +58,12 @@ namespace J_JQueuingSystem.Screens
         private void btnAdd_Click(object sender, EventArgs e)
         {
             new AddAccount(ref dgvUsers).ShowDialog();
+        }
+
+        private void dgvUsers_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            currentUser = database.getUserByID(dgvUsers.SelectedCells[0].Value.ToString());
+            new EditAccount(ref dgvUsers, currentUser).ShowDialog();
         }
     }
 }
