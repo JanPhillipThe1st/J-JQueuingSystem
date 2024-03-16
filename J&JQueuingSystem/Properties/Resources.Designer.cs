@@ -73,6 +73,16 @@ namespace J_JQueuingSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap asset_2_3x_AoPE4JM6KaU8PVNB {
+            get {
+                object obj = ResourceManager.GetObject("asset-2-3x-AoPE4JM6KaU8PVNB", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap check {
             get {
                 object obj = ResourceManager.GetObject("check", resourceCulture);

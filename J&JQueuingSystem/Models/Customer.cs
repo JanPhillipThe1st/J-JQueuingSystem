@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace J_JQueuingSystem.Models
 {
-    internal class Customer
+    public class Customer
     {
         public int ID { get; set; }
         public String name { get; set; }
+        public String school { get; set; }
         public String contact { get; set; }
         public String account_name { get; set; }
         public String section { get; set; }

@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace J_JQueuingSystem.Models
 {
-    internal class Queue
+    public class Queue
     {
         public int queue_number { get; set; }
+        public int batch_queue_number { get; set; }
         public int customer_ID { get; set; }
         public int batch_ID { get; set; }
         public String status { get; set; }

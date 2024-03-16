@@ -16,6 +16,7 @@ using J_JQueuingSystem.Screens;
 using Org.BouncyCastle.Asn1.X509;
 using SkiaSharp;
 using System.Reflection;
+using MySqlX.XDevAPI.Common;
 
 namespace J_JQueuingSystem
 {
@@ -107,8 +108,9 @@ namespace J_JQueuingSystem
             }
         }
 
-        public void  userLogin(String username, String password)
+        public bool  userLogin(String username, String password)
         {
+                bool result = false;
             using (MySqlCommand command = new MySqlCommand())
             {
                 checkConnection();
@@ -137,17 +139,17 @@ namespace J_JQueuingSystem
                                     new Makeup().ShowDialog();
                                     break;
                             }
-                            return;
+                            return true;
                         }
                         else if (reader.GetString(0) == username && reader.GetString(1) != password)
                         {
                             MessageBox.Show("You entered the wrong password", "Login Failed");
-                       
+                            return false;
                         }
                         else
                         {
                             MessageBox.Show("Invalid username and password.", "Login Failed");
-                     
+                            return false;
                         }
                     }
                     catch (Exception ex)
@@ -161,13 +163,14 @@ namespace J_JQueuingSystem
                 else
                 {
                     MessageBox.Show("User does not exist");
-                
+                    return false;
 
                 }
 
                 command.Dispose();
                 this.db.Close();
             }
+            return result;
         }
         public void fillQueueTable(ref DataGridView dgvTable,String batchNumber) {
             using (MySqlCommand command = new MySqlCommand())
@@ -350,7 +353,7 @@ namespace J_JQueuingSystem
             int result = 0;
             using (MySqlCommand command = new MySqlCommand())
             {
-                this.db.Open();
+                checkConnection();
                 command.Connection = this.db;
                 command.CommandText = "SELECT MAX(`ID`) AS 'last_id' FROM `customer` LIMIT 1; ";
                 MySqlDataReader reader = command.ExecuteReader();
@@ -364,12 +367,42 @@ namespace J_JQueuingSystem
             }
             return result;
         }
+
+
+        public int getNextBatchQueueNumber(String batch_ID)
+        {
+            int result = 0;
+            using (MySqlCommand command = new MySqlCommand())
+            {
+                checkConnection();
+                command.Connection = this.db;
+                command.CommandText = "SELECT `batch_queue_number` FROM `queue` WHERE `batch_ID` = @batch_ID AND `status` = 'waiting' ORDER BY `batch_queue_number` ASC LIMIT 1;";
+                command.Parameters.AddWithValue("@batch_ID",batch_ID);
+                MySqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        result = (int)reader.GetInt32(0);
+
+                    }
+                }
+                else {
+                    return 0;
+                }
+
+                command.Dispose();
+                this.db.Close();
+            }
+            return result;
+        }
+        
         public List<object> getBatchNumbersAsObjects()
         {
             List<object> results = new List<object>();
             using (MySqlCommand command = new MySqlCommand())
             {
-                this.db.Open();
+                checkConnection();
                 command.Connection = this.db;
                 command.CommandText = "SELECT `batch_ID` FROM `batch`; ";
                 MySqlDataReader reader = command.ExecuteReader();
@@ -389,7 +422,7 @@ namespace J_JQueuingSystem
             String result ="";
             using (MySqlCommand command = new MySqlCommand())
             {
-                this.db.Open();
+                checkConnection();
                 command.Connection = this.db;
                 command.CommandText = "SELECT `school_name` FROM `batch` WHERE `batch`.`batch_ID` = @batch_ID; ";
                 command.Parameters.AddWithValue("@batch_ID", batchID); 
@@ -409,7 +442,7 @@ namespace J_JQueuingSystem
             User result = new User ();
             using (MySqlCommand command = new MySqlCommand())
             {
-                this.db.Open();
+                checkConnection();
                 command.Connection = this.db;
                 command.CommandText = "SELECT * FROM `user` WHERE `user_ID`= @ID; ";
                 command.Parameters.AddWithValue("@ID", ID);
@@ -434,7 +467,7 @@ namespace J_JQueuingSystem
             List<int> results = new List<int>();
             using (MySqlCommand command = new MySqlCommand())
             {
-                this.db.Open();
+                checkConnection();
                 command.Connection = this.db;
                 command.CommandText = "SELECT `batch_ID` FROM `batch`; ";
                 MySqlDataReader reader = command.ExecuteReader();
@@ -454,7 +487,7 @@ namespace J_JQueuingSystem
             List<String> results = new List<String>();
             using (MySqlCommand command = new MySqlCommand())
             {
-                this.db.Open();
+                checkConnection();
                 command.Connection = this.db;
                 command.CommandText = "SELECT `"+ filterColumn + "` FROM `batch`; ";
                 MySqlDataReader reader = command.ExecuteReader();
@@ -474,7 +507,7 @@ namespace J_JQueuingSystem
             List<String> results = new List<String>();
             using (MySqlCommand command = new MySqlCommand())
             {
-                this.db.Open();
+                checkConnection();
                 command.Connection = this.db;
                 command.CommandText = "SELECT DISTINCT `" + filterColumn + "` FROM `user`; ";
                 MySqlDataReader reader = command.ExecuteReader();
@@ -493,7 +526,7 @@ namespace J_JQueuingSystem
             List<String> results = new List<String>();
             using (MySqlCommand command = new MySqlCommand())
             {
-                this.db.Open();
+                checkConnection();
                 command.Connection = this.db;
                 command.CommandText = "SELECT `batch_ID` AS '#', `event_type` AS 'Event type', `pricing` AS 'Price', `school_name` AS 'School Name' FROM `batch` WHERE  `" + filterColumn + "` = @criteria; ";
                 command.Parameters.AddWithValue("@criteria",criteria);
@@ -513,7 +546,7 @@ namespace J_JQueuingSystem
             List<String> results = new List<String>();
             using (MySqlCommand command = new MySqlCommand())
             {
-                this.db.Open();
+                checkConnection();
                 command.Connection = this.db;
                 command.CommandText = "SELECT `batch_ID` AS '#', `event_type` AS 'Event type', `pricing` AS 'Price', `school_name` AS 'School Name' FROM `batch`; ";
                 MySqlDataReader reader = command.ExecuteReader();
@@ -532,7 +565,7 @@ namespace J_JQueuingSystem
             using (MySqlCommand command = new MySqlCommand())
             {
                 //Add customer first
-                this.db.Open();
+                checkConnection();
                 command.Connection = this.db;
                 command.CommandText = "INSERT INTO `customer`( `name`, `contact`, `account_name`, `section`, `course`) VALUES " +
                     "( @name, @contact, @account_name, @section, @course)";
@@ -547,15 +580,16 @@ namespace J_JQueuingSystem
             }
             //Then get customer ID
             lastCustomer = getLastInsertedCustomer();
-
+            int batch_queue_number = getNextBatchQueueNumber(queue.batch_ID.ToString());
             //After that, pass the last inserted customer's ID to the queue table
             using (MySqlCommand command = new MySqlCommand())
             {
-                this.db.Open();
+                checkConnection();
                 command.Connection = this.db;
-                command.CommandText = "INSERT INTO `queue`( `customer_ID`, `batch_ID`, `status`) " +
-                    "VALUES ( @customer_ID, @batch_ID, @status)";
+                command.CommandText = "INSERT INTO `queue`( `customer_ID`,`batch_queue_number`, `batch_ID`, `status`) " +
+                    "VALUES ( @customer_ID, @batch_queue_number, @batch_ID, @status)";
                 command.Parameters.AddWithValue("@customer_ID", lastCustomer);
+                command.Parameters.AddWithValue("@batch_queue_number", batch_queue_number);
                 command.Parameters.AddWithValue("@batch_ID", queue.batch_ID);
                 command.Parameters.AddWithValue("@status", queue.status);
                 command.ExecuteNonQuery();
@@ -572,7 +606,7 @@ namespace J_JQueuingSystem
             int lastCustomer = 0;
             using (MySqlCommand command = new MySqlCommand())
             {
-                this.db.Open();
+                checkConnection();
                 command.Connection = this.db;
                 command.CommandText = "INSERT INTO `batch`(`batch_ID`,`event_type`, `pricing`, `school_name`) " +
                     "VALUES (@batch_ID, @event_type, @pricing, @school_name)";
@@ -602,8 +636,7 @@ namespace J_JQueuingSystem
         {
             int lastCustomer = 0;
             using (MySqlCommand command = new MySqlCommand())
-            {
-                this.db.Open();
+            {checkConnection();
                 command.Connection = this.db;
                 command.CommandText = "INSERT INTO `user`( `username`, `password`, `name`, `pc_number`, `access`)" +
                     " VALUES( @username, @password, @name, @pc_number, 'user')";
@@ -633,7 +666,7 @@ namespace J_JQueuingSystem
             {
                 using (MySqlCommand command = new MySqlCommand())
                 {
-                    this.db.Open();
+                    checkConnection();
                     command.Connection = this.db;
                     command.CommandText = "UPDATE `user` SET `username` = @username, `password` = @password, `name` =  @name," +
                         " `pc_number` = @pc_number WHERE `user_ID` = @user_ID;";
@@ -663,7 +696,7 @@ namespace J_JQueuingSystem
         {
             using (MySqlCommand command = new MySqlCommand())
             {
-                this.db.Open();
+                checkConnection();
                 command.Connection = this.db;
                 command.CommandText = "DELETE FROM `user` WHERE `user_ID` = @user_ID;";
                 command.Parameters.AddWithValue("@user_ID", user.user_ID);

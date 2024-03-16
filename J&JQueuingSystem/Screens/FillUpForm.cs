@@ -15,6 +15,7 @@ using gformsData = Google.Apis.Forms.v1.Data;
 using Google.Apis.Requests;
 using Google.Apis.Services;
 using J_JQueuingSystem.Models;
+using J_JQueuingSystem.Reporting;
 
 namespace J_JQueuingSystem.Screens
 {
@@ -97,11 +98,13 @@ namespace J_JQueuingSystem.Screens
                 customer.contact = tbContactNumber.Text;
                 customer.section = tbSection.Text;
                 customer.course = cbStrand.Text;
+                customer.school = cbSchools.Text;
 
                 queue.batch_ID = Convert.ToInt32(cbBatchNumber.Text);
                 queue.status = "waiting";
 
                 database.addQueue(queue,customer,cbBatchNumber.Text);
+                new TrustReceiptPrinting(queue,customer).Show();
             }
         }
 

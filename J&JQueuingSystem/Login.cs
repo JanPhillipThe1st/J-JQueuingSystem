@@ -38,8 +38,9 @@ namespace J_JQueuingSystem
                 this.Hide();
             }
             else {
-                database.userLogin(tbUsername.Text, tbPassword.Text);
+                if(database.userLogin(tbUsername.Text, tbPassword.Text)){ 
                 this.Hide();
+                }
                 return;
             }
             
