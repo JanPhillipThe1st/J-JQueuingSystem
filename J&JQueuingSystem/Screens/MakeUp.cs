@@ -100,7 +100,7 @@ namespace J_JQueuingSystem.Screens
                 //Now the waiting pool needs to be modified
                 //get this.
                 //When I click on the next button, I want the current customer's status to be 'dressing'
-                database.markAsDone(customer.ID.ToString());
+                database.markAsDone(customer.ID.ToString(),tbCameraImageNumber.Text);
                 //I also want to move them to a queue
                 refreshItem();
             }

@@ -178,7 +178,7 @@ namespace J_JQueuingSystem
                 checkConnection();
                 command.Connection = this.db;
                 command.CommandText = "SELECT `queue_number` AS 'Queue number', " +
-                    "`customer`.`name` AS 'Customer', `queue`.`status` AS 'Status' FROM `queue` INNER JOIN `customer` " +
+                    "`customer`.`name` AS 'Customer', `queue`.`status` AS 'Status', `queue`.`camera_image_number`  AS 'Camera Image Number' FROM `queue` INNER JOIN `customer` " +
                     "ON `customer`.`ID` = `queue`.`customer_ID` INNER JOIN `batch` ON `batch`.`batch_ID` = `queue`.`batch_ID` WHERE `batch`.`batch_ID` = @batchNumber;";
                 command.Parameters.AddWithValue("@batchNumber", batchNumber);
                 MySqlDataReader reader = command.ExecuteReader();
@@ -190,7 +190,25 @@ namespace J_JQueuingSystem
                 this.db.Close();
             }
         }
-   
+
+        public DataTable getQueueTable( String batchNumber)
+        {
+            using (MySqlCommand command = new MySqlCommand())
+            {
+                checkConnection();
+                command.Connection = this.db;
+                command.CommandText = "SELECT * FROM `queue` INNER JOIN `customer` " +
+                    "ON `customer`.`ID` = `queue`.`customer_ID` INNER JOIN `batch` ON `batch`.`batch_ID` = `queue`.`batch_ID` WHERE `batch`.`batch_ID` = @batchNumber;";
+                command.Parameters.AddWithValue("@batchNumber", batchNumber);
+                MySqlDataReader reader = command.ExecuteReader();
+                DataTable dataTable = new DataTable();
+                dataTable.Load(reader);
+                command.Dispose();
+                this.db.Close();
+                return dataTable;
+            }
+        }
+
         public void fillUsersTable(ref DataGridView dgvTable)
         {
             using (MySqlCommand command = new MySqlCommand())
@@ -234,7 +252,7 @@ namespace J_JQueuingSystem
                 checkConnection();
                 command.Connection = this.db;
                 command.CommandText = "SELECT `queue_number` AS 'Queue number', " +
-                    "`customer`.`name` AS 'Customer', `queue`.`status` AS 'Status' FROM `queue` INNER JOIN `customer` " +
+                    "`customer`.`name` AS 'Customer', `queue`.`status` AS 'Status', `queue`.`camera_image_number`  AS 'Camera Image Number' FROM `queue` INNER JOIN `customer` " +
                     "ON `customer`.`ID` = `queue`.`customer_ID` INNER JOIN `batch` ON `batch`.`batch_ID` = `queue`.`batch_ID`;";
                 MySqlDataReader reader = command.ExecuteReader();
                 DataTable dataTable = new DataTable();
@@ -312,15 +330,16 @@ namespace J_JQueuingSystem
             }
             return result;
         }
-        public Customer markAsDone(String id)
+        public Customer markAsDone(String id,String camera_image_number)
         {
             Customer result = new Customer();
             using (MySqlCommand command = new MySqlCommand())
             {
                 checkConnection();
                 command.Connection = this.db;
-                command.CommandText = "UPDATE `queue` SET `status` = 'done' WHERE `customer_ID` = @id";
+                command.CommandText = "UPDATE `queue` SET `status` = 'done', `camera_image_number` = @camera_image_number WHERE `customer_ID` = @id";
                 command.Parameters.AddWithValue("@id", id);
+                command.Parameters.AddWithValue("@camera_image_number", camera_image_number);
                 command.ExecuteNonQuery();
                 command.Dispose();
                 this.db.Close();
@@ -376,7 +395,7 @@ namespace J_JQueuingSystem
             {
                 checkConnection();
                 command.Connection = this.db;
-                command.CommandText = "SELECT `batch_queue_number` FROM `queue` WHERE `batch_ID` = @batch_ID AND `status` = 'waiting' ORDER BY `batch_queue_number` ASC LIMIT 1;";
+                command.CommandText = "SELECT `batch_queue_number`, `queue`.`camera_image_number`  AS 'Camera Image Number' FROM `queue` WHERE `batch_ID` = @batch_ID AND `status` = 'waiting' ORDER BY `batch_queue_number` ASC LIMIT 1;";
                 command.Parameters.AddWithValue("@batch_ID",batch_ID);
                 MySqlDataReader reader = command.ExecuteReader();
                 if (reader.HasRows)

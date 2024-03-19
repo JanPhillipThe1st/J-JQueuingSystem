@@ -53,6 +53,8 @@
             this.lblContactNumber = new System.Windows.Forms.Label();
             this.lblCourse = new System.Windows.Forms.Label();
             this.lblFBAccount = new System.Windows.Forms.Label();
+            this.tbCameraImageNumber = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.gbQueue.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbRefreshRate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvQueue)).BeginInit();
@@ -213,12 +215,13 @@
             // lblCurrentCustomer
             // 
             this.lblCurrentCustomer.AutoSize = true;
-            this.lblCurrentCustomer.Font = new System.Drawing.Font("Poppins SemiBold", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentCustomer.Font = new System.Drawing.Font("Poppins", 36F, System.Drawing.FontStyle.Bold);
+            this.lblCurrentCustomer.ForeColor = System.Drawing.Color.Red;
             this.lblCurrentCustomer.Location = new System.Drawing.Point(580, 93);
             this.lblCurrentCustomer.Name = "lblCurrentCustomer";
-            this.lblCurrentCustomer.Size = new System.Drawing.Size(500, 62);
+            this.lblCurrentCustomer.Size = new System.Drawing.Size(946, 84);
             this.lblCurrentCustomer.TabIndex = 3;
-            this.lblCurrentCustomer.Text = "<<CUSTOMER NAME HERE>>";
+            this.lblCurrentCustomer.Text = "*******CUSTOMER NAME HERE*******";
             // 
             // label1
             // 
@@ -233,82 +236,100 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Poppins Medium", 16F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(634, 289);
+            this.label2.Font = new System.Drawing.Font("Poppins", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(636, 299);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(123, 39);
+            this.label2.Size = new System.Drawing.Size(146, 48);
             this.label2.TabIndex = 5;
             this.label2.Text = "SECTION:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Poppins Medium", 16F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(640, 333);
+            this.label3.Font = new System.Drawing.Font("Poppins", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(643, 350);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(117, 39);
+            this.label3.Size = new System.Drawing.Size(139, 48);
             this.label3.TabIndex = 6;
             this.label3.Text = "COURSE:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Poppins Medium", 16F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(594, 201);
+            this.label4.Font = new System.Drawing.Font("Poppins", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(589, 197);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(163, 39);
+            this.label4.Size = new System.Drawing.Size(193, 48);
             this.label4.TabIndex = 5;
             this.label4.Text = "CONTACT #:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Poppins Medium", 16F, System.Drawing.FontStyle.Bold);
-            this.label5.Location = new System.Drawing.Point(584, 245);
+            this.label5.Font = new System.Drawing.Font("Poppins", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(577, 248);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(173, 39);
+            this.label5.Size = new System.Drawing.Size(205, 48);
             this.label5.TabIndex = 6;
             this.label5.Text = "FB ACCOUNT:";
             // 
             // lblSection
             // 
             this.lblSection.AutoSize = true;
-            this.lblSection.Font = new System.Drawing.Font("Poppins Medium", 16F, System.Drawing.FontStyle.Bold);
-            this.lblSection.Location = new System.Drawing.Point(763, 289);
+            this.lblSection.Font = new System.Drawing.Font("Poppins", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSection.Location = new System.Drawing.Point(788, 299);
             this.lblSection.Name = "lblSection";
-            this.lblSection.Size = new System.Drawing.Size(53, 39);
+            this.lblSection.Size = new System.Drawing.Size(62, 48);
             this.lblSection.TabIndex = 5;
             this.lblSection.Text = "***";
             // 
             // lblContactNumber
             // 
             this.lblContactNumber.AutoSize = true;
-            this.lblContactNumber.Font = new System.Drawing.Font("Poppins Medium", 16F, System.Drawing.FontStyle.Bold);
-            this.lblContactNumber.Location = new System.Drawing.Point(763, 201);
+            this.lblContactNumber.Font = new System.Drawing.Font("Poppins", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblContactNumber.Location = new System.Drawing.Point(788, 197);
             this.lblContactNumber.Name = "lblContactNumber";
-            this.lblContactNumber.Size = new System.Drawing.Size(53, 39);
+            this.lblContactNumber.Size = new System.Drawing.Size(62, 48);
             this.lblContactNumber.TabIndex = 5;
             this.lblContactNumber.Text = "***";
             // 
             // lblCourse
             // 
             this.lblCourse.AutoSize = true;
-            this.lblCourse.Font = new System.Drawing.Font("Poppins Medium", 16F, System.Drawing.FontStyle.Bold);
-            this.lblCourse.Location = new System.Drawing.Point(763, 333);
+            this.lblCourse.Font = new System.Drawing.Font("Poppins", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCourse.Location = new System.Drawing.Point(788, 350);
             this.lblCourse.Name = "lblCourse";
-            this.lblCourse.Size = new System.Drawing.Size(53, 39);
+            this.lblCourse.Size = new System.Drawing.Size(62, 48);
             this.lblCourse.TabIndex = 6;
             this.lblCourse.Text = "***";
             // 
             // lblFBAccount
             // 
             this.lblFBAccount.AutoSize = true;
-            this.lblFBAccount.Font = new System.Drawing.Font("Poppins Medium", 16F, System.Drawing.FontStyle.Bold);
-            this.lblFBAccount.Location = new System.Drawing.Point(763, 245);
+            this.lblFBAccount.Font = new System.Drawing.Font("Poppins", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFBAccount.Location = new System.Drawing.Point(788, 248);
             this.lblFBAccount.Name = "lblFBAccount";
-            this.lblFBAccount.Size = new System.Drawing.Size(53, 39);
+            this.lblFBAccount.Size = new System.Drawing.Size(62, 48);
             this.lblFBAccount.TabIndex = 6;
             this.lblFBAccount.Text = "***";
+            // 
+            // tbCameraImageNumber
+            // 
+            this.tbCameraImageNumber.Font = new System.Drawing.Font("Poppins", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbCameraImageNumber.Location = new System.Drawing.Point(788, 401);
+            this.tbCameraImageNumber.Name = "tbCameraImageNumber";
+            this.tbCameraImageNumber.Size = new System.Drawing.Size(500, 48);
+            this.tbCameraImageNumber.TabIndex = 9;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Poppins", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(605, 401);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(177, 48);
+            this.label7.TabIndex = 11;
+            this.label7.Text = "CAMERA #:";
             // 
             // Makeup
             // 
@@ -316,6 +337,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1554, 708);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.tbCameraImageNumber);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.lblFBAccount);
             this.Controls.Add(this.label5);
@@ -332,7 +355,7 @@
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.Name = "Makeup";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Makeup room";
+            this.Text = "PC 3";
             this.Load += new System.EventHandler(this.FillUpForm_Load);
             this.gbQueue.ResumeLayout(false);
             this.gbQueue.PerformLayout();
@@ -368,5 +391,7 @@
         private System.Windows.Forms.Label lblContactNumber;
         private System.Windows.Forms.Label lblSection;
         private RoundedButton btnNext;
+        private System.Windows.Forms.TextBox tbCameraImageNumber;
+        private System.Windows.Forms.Label label7;
     }
 }

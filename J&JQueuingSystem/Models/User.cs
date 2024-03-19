@@ -12,6 +12,7 @@ namespace J_JQueuingSystem.Models
         public String username { get; set; }
         public String password { get; set; }
         public String name { get; set; }
+        public String file_name = "Not Assigned";
         public int pc_number { get; set; }
     }
 }

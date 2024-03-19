@@ -37,6 +37,8 @@
             this.tbIPAddress = new System.Windows.Forms.TextBox();
             this.lblIPAddress = new System.Windows.Forms.Label();
             this.tbServerIPAddress = new System.Windows.Forms.TextBox();
+            this.tbUsername = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,6 +58,8 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.tbUsername);
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.tbServerIPAddress);
             this.groupBox1.Controls.Add(this.btnProceed);
             this.groupBox1.Controls.Add(this.cbIsServer);
@@ -66,8 +70,8 @@
             this.groupBox1.Font = new System.Drawing.Font("Poppins", 16F);
             this.groupBox1.Location = new System.Drawing.Point(17, 78);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1021, 318);
-            this.groupBox1.TabIndex = 1;
+            this.groupBox1.Size = new System.Drawing.Size(1021, 410);
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Connect to Server";
             // 
@@ -75,10 +79,10 @@
             // 
             this.btnProceed.Enabled = false;
             this.btnProceed.Font = new System.Drawing.Font("Poppins", 10F);
-            this.btnProceed.Location = new System.Drawing.Point(430, 254);
+            this.btnProceed.Location = new System.Drawing.Point(398, 342);
             this.btnProceed.Name = "btnProceed";
             this.btnProceed.Size = new System.Drawing.Size(225, 32);
-            this.btnProceed.TabIndex = 13;
+            this.btnProceed.TabIndex = 2;
             this.btnProceed.Text = "Proceed";
             this.btnProceed.UseVisualStyleBackColor = true;
             this.btnProceed.Click += new System.EventHandler(this.btnProceed_Click_1);
@@ -146,8 +150,28 @@
             this.tbServerIPAddress.Location = new System.Drawing.Point(278, 209);
             this.tbServerIPAddress.Name = "tbServerIPAddress";
             this.tbServerIPAddress.Size = new System.Drawing.Size(464, 31);
-            this.tbServerIPAddress.TabIndex = 14;
+            this.tbServerIPAddress.TabIndex = 0;
             this.tbServerIPAddress.TextChanged += new System.EventHandler(this.tbServerIPAddress_TextChanged);
+            // 
+            // tbUsername
+            // 
+            this.tbUsername.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbUsername.Font = new System.Drawing.Font("Poppins", 12F);
+            this.tbUsername.Location = new System.Drawing.Point(278, 274);
+            this.tbUsername.Name = "tbUsername";
+            this.tbUsername.Size = new System.Drawing.Size(464, 31);
+            this.tbUsername.TabIndex = 1;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(273, 243);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(152, 28);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "MySQL username:";
             // 
             // NetworkScreen
             // 
@@ -155,7 +179,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(1055, 399);
+            this.ClientSize = new System.Drawing.Size(1055, 491);
             this.Controls.Add(this.panelBanner);
             this.Controls.Add(this.groupBox1);
             this.DoubleBuffered = true;
@@ -182,5 +206,7 @@
         private System.Windows.Forms.TextBox tbIPAddress;
         private System.Windows.Forms.Label lblIPAddress;
         private System.Windows.Forms.TextBox tbServerIPAddress;
+        private System.Windows.Forms.TextBox tbUsername;
+        private System.Windows.Forms.Label label3;
     }
 }

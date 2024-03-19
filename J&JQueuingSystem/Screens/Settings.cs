@@ -1,4 +1,5 @@
 ﻿using J_JQueuingSystem.Models;
+using J_JQueuingSystem.Reporting;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -54,6 +55,12 @@ namespace J_JQueuingSystem.Screens
             cbFilterBatch.Items.Clear();
             cbFilterBatch.Items.AddRange(filterDictionary.Keys.ToArray());
             database.fillBatchTable(ref dgvBatchList);
+
+
+            //fill batch numbers
+            cbBatchNumber.Items.Clear();
+            cbBatchNumber.Items.AddRange(database.getBatchNumbersAsObjects().ToArray());
+            cbBatchNumber.SelectedIndex = 0;
         }
 
         private void tbAutoRefreshToggle_CheckedChanged(object sender, EventArgs e)
@@ -74,7 +81,7 @@ namespace J_JQueuingSystem.Screens
         {
             if (refreshing)
             {
-                database.fillQueueTable(ref dgvQueue);
+                database.fillQueueTable(ref dgvQueue, cbBatchNumber.Text);
             }
         }
 
@@ -92,6 +99,18 @@ namespace J_JQueuingSystem.Screens
         private void btnAdd_Click(object sender, EventArgs e)
         {
             new AddBatch(ref dgvBatchList).ShowDialog();
+        }
+
+        private void btnPrintList_Click(object sender, EventArgs e)
+        {
+            DataTable dataTable = new DataTable();
+            dataTable = database.getQueueTable(cbBatchNumber.Text);
+            new BatchListPrinting(dataTable, database.getSchoolName(cbBatchNumber.Text)).ShowDialog();
+        }
+
+        private void cbBatchNumber_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ;
         }
     }
 }

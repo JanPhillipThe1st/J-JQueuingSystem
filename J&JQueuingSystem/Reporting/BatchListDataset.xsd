@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="BatchListDataset" targetNamespace="http://tempuri.org/BatchListDataset.xsd" xmlns:mstns="http://tempuri.org/BatchListDataset.xsd" xmlns="http://tempuri.org/BatchListDataset.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="BatchListDataset" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="BatchListDataset" msprop:Generator_DataSetName="BatchListDataset">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="BatchListDataTable" msprop:Generator_RowEvHandlerName="BatchListDataTableRowChangeEventHandler" msprop:Generator_RowDeletedName="BatchListDataTableRowDeleted" msprop:Generator_RowDeletingName="BatchListDataTableRowDeleting" msprop:Generator_RowEvArgName="BatchListDataTableRowChangeEvent" msprop:Generator_TablePropName="BatchListDataTable" msprop:Generator_RowChangedName="BatchListDataTableRowChanged" msprop:Generator_RowChangingName="BatchListDataTableRowChanging" msprop:Generator_TableClassName="BatchListDataTableDataTable" msprop:Generator_RowClassName="BatchListDataTableRow" msprop:Generator_TableVarName="tableBatchListDataTable" msprop:Generator_UserTableName="BatchListDataTable">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="camera_image_number" msprop:Generator_ColumnPropNameInRow="camera_image_number" msprop:Generator_ColumnPropNameInTable="camera_image_numberColumn" msprop:Generator_ColumnVarNameInTable="columncamera_image_number" msprop:Generator_UserColumnName="camera_image_number" type="xs:string" minOccurs="0" />
+              <xs:element name="name" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_UserColumnName="name" type="xs:string" minOccurs="0" />
+              <xs:element name="contact" msprop:Generator_ColumnPropNameInRow="contact" msprop:Generator_ColumnPropNameInTable="contactColumn" msprop:Generator_ColumnVarNameInTable="columncontact" msprop:Generator_UserColumnName="contact" type="xs:string" minOccurs="0" />
+              <xs:element name="account_name" msprop:Generator_ColumnPropNameInRow="account_name" msprop:Generator_ColumnPropNameInTable="account_nameColumn" msprop:Generator_ColumnVarNameInTable="columnaccount_name" msprop:Generator_UserColumnName="account_name" type="xs:string" minOccurs="0" />
+              <xs:element name="section" msprop:Generator_ColumnPropNameInRow="section" msprop:Generator_ColumnPropNameInTable="sectionColumn" msprop:Generator_ColumnVarNameInTable="columnsection" msprop:Generator_UserColumnName="section" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

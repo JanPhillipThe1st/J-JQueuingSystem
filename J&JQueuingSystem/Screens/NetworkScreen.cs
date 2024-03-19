@@ -57,7 +57,7 @@ namespace J_JQueuingSystem.Screens
             {
                 var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
                 var connectionStringsSection = (ConnectionStringsSection)config.GetSection("connectionStrings");
-                connectionStringsSection.ConnectionStrings["jandjqueuing"].ConnectionString = "SERVER=" + tbServerIPAddress.Text + ";PORT=3306;DATABASE=jandjqueuing;UID=root;SslMode=none; default command timeout=1200;";
+                connectionStringsSection.ConnectionStrings["jandjqueuing"].ConnectionString = "SERVER=" + tbServerIPAddress.Text + ";PORT=3306;DATABASE=jandjqueuing;uid=" + tbUsername.Text + "; default command timeout=1200;";
                 config.Save();
                 ConfigurationManager.RefreshSection("connectionStrings");
                 tbServerIPAddress.Text = "";
@@ -67,19 +67,12 @@ namespace J_JQueuingSystem.Screens
         private void btnProceed_Click(object sender, EventArgs e)
         {
 
-          String appConfigPath = System.Reflection.Assembly.GetEntryAssembly().Location;
-
-            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            var connectionStringsSection = (ConnectionStringsSection)config.GetSection("connectionStrings");
-            connectionStringsSection.ConnectionStrings["jandjqueuing"].ConnectionString = "SERVER=" + tbServerIPAddress.Text + ";PORT=3306;DATABASE=jandjqueuing;UID=root;SslMode=none; default command timeout=1200;";
-            config.Save();
-            ConfigurationManager.RefreshSection("connectionStrings");
 
         }
 
         private void tbServerIPAddress_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
-            
+
         }
 
         private void tbServerIPAddress_TextChanged(object sender, EventArgs e)
@@ -97,6 +90,14 @@ namespace J_JQueuingSystem.Screens
 
         private void btnProceed_Click_1(object sender, EventArgs e)
         {
+
+            String appConfigPath = System.Reflection.Assembly.GetEntryAssembly().Location;
+
+            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            var connectionStringsSection = (ConnectionStringsSection)config.GetSection("connectionStrings");
+            connectionStringsSection.ConnectionStrings["jandjqueuing"].ConnectionString = "SERVER=" + tbServerIPAddress.Text + ";PORT=3306;DATABASE=jandjqueuing;uid="+tbUsername.Text+"; default command timeout=1200;";
+            config.Save();
+            ConfigurationManager.RefreshSection("connectionStrings");
             new Login().Show();
         }
     }
